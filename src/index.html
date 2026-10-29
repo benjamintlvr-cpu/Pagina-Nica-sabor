@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NicaSabor - Sabor a mi tierra</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Iconos FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .tab-content {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0B132B; }
+    ::-webkit-scrollbar-thumb { background: #1C2541; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #D97706; }
+  </style>
+</head>
+<body class="bg-[#0B132B] text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-900">
+
+  <!-- Encabezado / Navegación -->
+  <header class="sticky top-0 z-40 bg-[#0B132B]/90 backdrop-blur-md border-b border-amber-500/20 px-4 py-3">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      
+      <div class="flex items-center gap-3">
+        <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-lg shadow-amber-500/10 flex-shrink-0 bg-slate-900">
+          <!-- 🔴 [AQUÍ CAMBIAR IMAGEN - LOGO SUPERIOR] CON TU NUEVO ENLACE -->
+          <a href="https://ibb.co/vxd0kB8G">
+            <img src="https://i.ibb.co/Y7dHhWGM/LOGO-PRINCIPAL-DE-PAGINA-WEB.jpg" alt="LOGO-PRINCIPAL-DE-PAGINA-WEB" class="w-full h-full object-cover">
+          </a>
+        </div>
+        <div>
+          <h1 class="font-serif font-bold text-xl md:text-2xl text-amber-400 tracking-wide leading-none">NicaSabor</h1>
+          <p class="text-xs text-emerald-400 font-medium italic mt-0.5">Sabor a mi tierra, tradición en cada bocado</p>
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleQRModal()" class="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs md:text-sm flex items-center gap-2 transition shadow-md shadow-amber-500/20 active:scale-95">
+          <i class="fa-solid font-bold fa-qrcode text-base"></i>
+          <span class="hidden sm:inline">Ver QR Feria</span>
+        </button>
+        <button onclick="toggleTeamModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 text-xs md:text-sm font-semibold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-user-graduate"></i>
+          <span class="hidden md:inline">Grupo</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Sección Principal / Hero -->
+  <section class="relative px-4 py-8 md:py-12 max-w-6xl mx-auto w-full">
+    <div class="bg-gradient-to-r from-slate-900/90 via-[#1C2541]/80 to-slate-900/90 rounded-3xl p-6 md:p-10 border border-amber-500/20 shadow-2xl relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
+      
+      <div class="max-w-2xl z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">
+          <i class="fa-solid fa-flask"></i> IV Licenciatura en Farmacia — Universidad Nacional Multidisciplinaria "Ricardo Morales Avilés"
+        </div>
+        <h2 class="text-3xl md:text-5xl font-serif font-extrabold text-white leading-tight mb-4">
+          Tradición Gastronómica &amp; <span class="text-amber-400 underline decoration-amber-500/50 decoration-wavy">Ciencia Farmacéutica</span>
+        </h2>
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">
+          Bienvenidos a la plataforma interactiva del proyecto <strong class="text-amber-300">NicaSabor</strong>. Analizamos el valor nutricional, aporte energético e inocuidad desde la perspectiva farmacéutica del nacatamal, la tortilla de maíz y el café nicaragüense.
+        </p>
+        
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+          <a href="#productos" class="px-5 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
+            <i class="fa-solid fa-utensils"></i> Explorar Fichas
+          </a>
+          <button onclick="toggleTeamModal()" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 transition text-sm font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-users"></i> Créditos del Grupo
+          </button>
+        </div>
+      </div>
+
+      <!-- Imagen Destacada del Nacatamal Tradicional -->
+      <div class="relative w-full max-w-xs aspect-square flex-shrink-0 flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-emerald-500/20 rounded-full blur-2xl"></div>
+        <div class="relative w-full h-full rounded-2xl border border-amber-500/30 bg-slate-900/60 p-2 shadow-xl flex flex-col items-center justify-center overflow-hidden">
+          <img src="https://i.ibb.co/7tCz9LsW/Nactamal-Logo.jpg" alt="Nacatamal tradicional" class="w-full h-full object-cover rounded-xl">
+          <span class="absolute bottom-2 bg-slate-950/80 px-3 py-1 rounded-full text-[10px] font-serif italic text-amber-300 backdrop-blur-sm border border-amber-500/30">Nacatamal tradicional</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Navegación por Pestañas -->
+  <main id="productos" class="max-w-6xl mx-auto px-4 py-6 w-full flex-grow">
+    
+    <!-- Botones de Selección -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-8 bg-slate-900/80 p-2 rounded-2xl border border-slate-800">
+      <button onclick="selectTab('nacatamal')" id="tab-nacatamal" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-amber-500 text-slate-950 shadow-md">
+        <i class="fa-solid fa-box"></i> Nacatamal
+      </button>
+      <button onclick="selectTab('tortilla')" id="tab-tortilla" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i class="fa-solid fa-circle"></i> Tortilla de Maíz
+      </button>
+      <button onclick="selectTab('cafe')" id="tab-cafe" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i class="fa-solid fa-mug-hot"></i> Café Negro
+      </button>
+      <button onclick="selectTab('comparativa')" id="tab-comparativa" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i class="fa-solid fa-scale-balanced"></i> Comparativa Nutricional
+      </button>
+    </div>
+
+    <!-- Pestaña 1: Nacatamal -->
+    <div id="content-nacatamal" class="tab-content block space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-1 bg-slate-900/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-full h-48 bg-slate-800/80 rounded-xl mb-4 overflow-hidden border border-amber-500/20">
+              <img src="https://i.ibb.co/7tCz9LsW/Nactamal-Logo.jpg" alt="Nacatamal en hojas de guineo" class="w-full h-full object-cover">
+            </div>
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Tradición en cada hoja</span>
+            <h3 class="text-2xl font-serif font-bold text-white mt-1">1. Nacatamal Nicaragüense</h3>
+            <p class="text-slate-300 text-xs leading-relaxed mt-2">
+              Elaborado tradicionalmente con masa de maíz nixtamalizado, manteca de cerdo, arroz, carne (cerdo o pollo), papas, chiltoma, cebolla, tomate y hierba buena, envuelto cuidadosamente en hojas de plátano o guineo.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400">
+            <i class="fa-solid fa-weight-hanging text-amber-400"></i> Porción de referencia: <strong class="text-slate-200">300 g (1 unidad aproximada)</strong>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+          <h4 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie"></i> Valores Nutricionales Aproximados (300 g)
+          </h4>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Energía</span>
+              <span class="text-xl font-extrabold text-amber-400">450–750</span> <span class="text-xs text-slate-400">kcal</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Carbohidratos</span>
+              <span class="text-xl font-extrabold text-amber-400">45–75</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Proteínas</span>
+              <span class="text-xl font-extrabold text-amber-400">15–30</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Grasas</span>
+              <span class="text-xl font-extrabold text-amber-400">20–40</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Fibra</span>
+              <span class="text-xl font-extrabold text-amber-400">3–7</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Micronutrientes</span>
+              <span class="text-xs font-semibold text-emerald-400">Hierro, Vit. B12</span>
+            </div>
+          </div>
+
+          <h4 class="text-lg font-bold text-emerald-400 mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-prescription-bottle-medical"></i> Aporte desde la Perspectiva Farmacéutica
+          </h4>
+          <ul class="space-y-2 text-xs md:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+              <span><strong>Nutrición aplicada:</strong> Evaluación del aporte calórico denso requerido para la reposición energética.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+              <span><strong>Toxicología e Inocuidad:</strong> Prevención de intoxicaciones garantizando la inocuidad alimentaria y manejo higiénico.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+              <span><strong>Microbiología:</strong> Control estricto de cocción prolongada (&gt;3 horas) e higiene en hoja de plátano/guineo.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-triangle-exclamation text-amber-400 mt-1"></i>
+              <span><strong>Precaución sanitaria:</strong> El nacatamal es un alimento tradicional, no un medicamento. Su ingesta debe ser moderada en pacientes con dietas hipocalóricas.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pestaña 2: Tortilla -->
+    <div id="content-tortilla" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-1 bg-slate-900/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-full h-44 bg-slate-800/80 rounded-xl mb-4 overflow-hidden border border-amber-500/20">
+              <img src="https://i.ibb.co/YB8XSybc/Tortilas-para-pagina.webp" alt="Tortillas de maíz nicaragüenses" class="w-full h-full object-cover">
+            </div>
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Simple, Nutritiva y Esencial</span>
+            <h3 class="text-2xl font-serif font-bold text-white mt-1">2. Tortilla de Maíz</h3>
+            <p class="text-slate-300 text-xs leading-relaxed mt-2">
+              Alimento pilar en la gastronomía de Nicaragua. Elaborada a partir de masa de maíz sometida al ancestral proceso de nixtamalización y cocida en comal.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400">
+            <i class="fa-solid fa-weight-hanging text-amber-400"></i> Porción de referencia: <strong class="text-slate-200">26 g (1 tortilla)</strong>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+          <h4 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie"></i> Valores Nutricionales (26 g)
+          </h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Energía</span>
+              <span class="text-xl font-extrabold text-amber-400">57</span> <span class="text-xs text-slate-400">kcal</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Carbohidratos</span>
+              <span class="text-xl font-extrabold text-amber-400">11,6</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Proteínas</span>
+              <span class="text-xl font-extrabold text-amber-400">1,5</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Grasas</span>
+              <span class="text-xl font-extrabold text-amber-400">0,7</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Fibra</span>
+              <span class="text-xl font-extrabold text-amber-400">1,6</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Calcio</span>
+              <span class="text-xl font-extrabold text-amber-400">21</span> <span class="text-xs text-slate-400">mg</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Hierro</span>
+              <span class="text-xl font-extrabold text-amber-400">0,3</span> <span class="text-xs text-slate-400">mg</span>
+            </div>
+          </div>
+
+          <h4 class="text-lg font-bold text-emerald-400 mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-microscope"></i> Perspectiva Farmacéutica &amp; Tecnológica
+          </h4>
+          <ul class="space-y-2 text-xs md:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-atom text-emerald-400 mt-1"></i>
+              <span><strong>Nixtamalización:</strong> La cocción con cal alcaliniza el medio, incrementando la biodisponibilidad de calcio y niacina (Vitamina B3).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-heart-pulse text-emerald-400 mt-1"></i>
+              <span><strong>Salud Digestiva:</strong> Su fibra dietética contribuye a regular el tránsito intestinal y mantener la glucemia estable.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pestaña 3: Café -->
+    <div id="content-cafe" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-1 bg-slate-900/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-full h-44 bg-slate-800/80 rounded-xl mb-4 flex items-center justify-center border border-amber-500/20 p-2">
+              <svg viewBox="0 0 200 150" class="w-full h-full">
+                <path d="M 90 20 Q 95 10 90 0 M 105 20 Q 110 10 105 0 M 120 20 Q 125 10 120 0" stroke="#CBD5E1" stroke-width="2" fill="none" opacity="0.6"/>
+                <rect x="60" y="40" width="80" height="70" rx="15" fill="#F8FAFC"/>
+                <path d="M 140 55 C 160 55, 160 95, 140 95" fill="none" stroke="#F8FAFC" stroke-width="8"/>
+                <ellipse cx="100" cy="50" rx="36" ry="12" fill="#451A03"/>
+              </svg>
+            </div>
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Energía y Bienestar Natural</span>
+            <h3 class="text-2xl font-serif font-bold text-white mt-1">3. Café de Nicaragua</h3>
+            <p class="text-slate-300 text-xs leading-relaxed mt-2">
+              Bebida de infusión obtenida a partir de granos tostados de café. Rico en compuestos polifenólicos bioactivos con propiedades antioxidantes.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400">
+            <i class="fa-solid fa-mug-saucer text-amber-400"></i> Taza de referencia: <strong class="text-slate-200">240 ml (Sin azúcar)</strong>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+          <h4 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie"></i> Valores Nutricionales &amp; Farmacológicos (240 ml)
+          </h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Energía</span>
+              <span class="text-xl font-extrabold text-amber-400">2–5</span> <span class="text-xs text-slate-400">kcal</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Cafeína</span>
+              <span class="text-xl font-extrabold text-amber-400">80–120</span> <span class="text-xs text-slate-400">mg</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Carbohidratos</span>
+              <span class="text-xl font-extrabold text-amber-400">0–1</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+            <div class="bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+              <span class="text-xs text-slate-400 block">Grasas</span>
+              <span class="text-xl font-extrabold text-amber-400">~ 0</span> <span class="text-xs text-slate-400">g</span>
+            </div>
+          </div>
+
+          <h4 class="text-lg font-bold text-emerald-400 mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-capsules"></i> Farmacología de la Cafeína
+          </h4>
+          <ul class="space-y-2 text-xs md:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-bolt text-amber-400 mt-1"></i>
+              <span><strong>Mecanismo de acción:</strong> Antagonista competitivo de los receptores de adenosina en el sistema nervioso central, reduciendo la fatiga.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-shield-halved text-emerald-400 mt-1"></i>
+              <span><strong>Antioxidantes:</strong> Aporta ácidos clorogénicos y polifenoles.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-triangle-exclamation text-amber-400 mt-1"></i>
+              <span><strong>Interacciones farmacoterapéuticas:</strong> Puede interactuar con sedantes o ansiolíticos. Consumir con moderación.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pestaña 4: Comparativa -->
+    <div id="content-comparativa" class="tab-content hidden space-y-6">
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-xl font-serif font-bold text-amber-400 mb-4">Tabla Comparativa del Trinomio Tradicional</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs md:text-sm text-slate-300">
+            <thead class="bg-slate-800 text-amber-400 uppercase text-xs font-bold">
+              <tr>
+                <th class="p-3">Producto</th>
+                <th class="p-3">Aporte Principal</th>
+                <th class="p-3">Enfoque Farmacéutico</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-box text-amber-400"></i> Nacatamal (300g)
+                </td>
+                <td class="p-3">Energía (450-750 kcal), Proteínas y Grasas.</td>
+                <td class="p-3 text-emerald-400">Inocuidad, control microbiológico y toxicología alimentaria.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-circle text-amber-400"></i> Tortilla de maíz (26g)
+                </td>
+                <td class="p-3">Carbohidratos, Fibra, Calcio (21mg).</td>
+                <td class="p-3 text-emerald-400">Tecnología alimentaria (nixtamalización) y biodisponibilidad.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3 font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-mug-hot text-amber-400"></i> Café Negro (240ml)
+                </td>
+                <td class="p-3">Cafeína (80-120mg), Polifenoles bioactivos.</td>
+                <td class="p-3 text-emerald-400">Farmacología (bloqueo de receptores) e interacciones.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal QR -->
+  <div id="qrModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-amber-500/30 rounded-3xl p-6 max-w-sm w-full text-center relative shadow-2xl">
+      <button onclick="toggleQRModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+      <i class="fa-solid fa-qrcode text-amber-400 text-4xl mb-2"></i>
+      <h3 class="text-xl font-serif font-bold text-white">NicaSabor QR Feria</h3>
+      <p class="text-xs text-slate-300 mt-1 mb-4">Escanea para acceder a la ficha digital del producto en el estand de la feria.</p>
+      
+      <div class="bg-white p-4 rounded-2xl inline-block shadow-inner mb-4">
+        <svg viewBox="0 0 100 100" class="w-48 h-48">
+          <path d="M0,0 h30 v30 h-30 z M40,0 h20 v10 h-20 z M70,0 h30 v30 h-30 z M0,40 h10 v20 h-10 z M30,30 h30 v30 h-30 z M80,40 h20 v10 h-20 z M0,70 h30 v30 h-30 z M40,80 h30 v20 h-30 z M80,70 h20 v30 h-20 z" fill="#0B132B"/>
+          <rect x="6" y="6" width="18" height="18" fill="#F59E0B"/>
+          <rect x="76" y="6" width="18" height="18" fill="#F59E0B"/>
+          <rect x="6" y="76" width="18" height="18" fill="#F59E0B"/>
+        </svg>
+      </div>
+
+      <div class="text-xs text-amber-400 font-semibold italic">
+        "Tradición en cada bocado"
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Grupo / Créditos -->
+  <div id="teamModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-amber-500/30 rounded-3xl p-6 max-w-md w-full relative shadow-2xl">
+      <button onclick="toggleTeamModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+      
+      <div class="text-center mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest leading-relaxed">UNIVERSIDAD NACIONAL MULTIDISCIPLINARIA "RICARDO MORALES AVILÉS"</span>
+        <h3 class="text-xl font-serif font-bold text-amber-400 mt-2">IV Licenciatura en Farmacia</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Sábado, 14 de noviembre del 2026</p>
+      </div>
+
+      <div class="space-y-2 mb-6">
+        <h4 class="text-xs font-bold text-slate-300 uppercase border-b border-slate-800 pb-1">Elaborado por:</h4>
+        <ul class="text-xs text-slate-200 space-y-1.5 font-medium">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-amber-400"></i> María Mercedes Blandón Castillo</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-amber-400"></i> Isamara Massiel Moreira Morales</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-amber-400"></i> Deyling Aleyda Castillo Pérez</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-amber-400"></i> Naraly Selina Rodríguez Melendez</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-amber-400"></i> Elisa Gabriela Arauz Lanuza</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-user text-amber-400"></i> María Salome Ubeda Ubeda</li>
+        </ul>
+      </div>
+
+      <button onclick="toggleTeamModal()" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition">
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+  <!-- Pie de Página -->
+  <footer class="bg-slate-950 border-t border-slate-800 px-4 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <div>
+        <p class="text-slate-400 font-semibold">NicaSabor &copy; 2026 — Sabor a mi tierra</p>
+        <p class="text-slate-500 text-[11px]">Ciencia al servicio de tu salud y nuestra tradición</p>
+      </div>
+      <div class="text-amber-400/80 font-serif italic text-sm">
+        "Tradición en cada bocado"
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script JavaScript Integrado -->
+  <script>
+    function selectTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'text-slate-950', 'shadow-md');
+        btn.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800');
+      });
+
+      const selectedContent = document.getElementById('content-' + tabId);
+      if (selectedContent) {
+        selectedContent.classList.remove('hidden');
+      }
+
+      const selectedBtn = document.getElementById('tab-' + tabId);
+      if (selectedBtn) {
+        selectedBtn.classList.add('bg-amber-500', 'text-slate-950', 'shadow-md');
+        selectedBtn.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800');
+      }
+    }
+
+    function toggleQRModal() {
+      const modal = document.getElementById('qrModal');
+      if (modal) {
+        modal.classList.toggle('hidden');
+      }
+    }
+
+    function toggleTeamModal() {
+      const modal = document.getElementById('teamModal');
+      if (modal) {
+        modal.classList.toggle('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
